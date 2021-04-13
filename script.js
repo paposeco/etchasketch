@@ -3,31 +3,20 @@ const clearButton = document.querySelector("#clear");
 const pencilButtons = document.querySelectorAll(".pencil");
 const pencilButtonsDiv = document.querySelector("#pencilButtonsDiv");
 let pencilType;
-let innerDivs;
 
-//to do: reset mouseover, change font and buttons. make pretty
-// name each node of the requested squares
-function createDivsNames(sideSquares, divArray) {
-  for (let i = 0; i < sideSquares; i++) {
-    divArray.push("div" + i);
-  }
-  return divArray;
-}
-
-// creates a div for each node on the divArray and appends to outerdiv
+// creates an array with the necessary number of divs, sets class, and appends to outerdiv; create grid and calls coloring function
 function createDivs(sideSquares, totalNumberSquares) {
-  let divArray = [];
-  createDivsNames(totalNumberSquares, divArray); //returns divArray
-  for (let j = 0; j < divArray.length; j++) {
-    divArray[j] = document.createElement("div");
-    divArray[j].setAttribute("class", "innerdivs");
-    outerDiv.appendChild(divArray[j]);
+  let divsArray = [];
+  for (let i = 0; i < totalNumberSquares; i++) {
+    divsArray[i] = document.createElement("div");
+    divsArray[i].setAttribute("class", "innerdivs");
+    outerDiv.appendChild(divsArray[i]);
   }
   // divide available space on page between the requested squares and stores the created divs
   outerDiv.style.gridTemplateColumns = "repeat(" + sideSquares + ", 1fr)";
-  innerDivs = document.querySelectorAll("div.innerdivs");
-  // colors updated innerDivs
-  colorInnerDivs(innerDivs);
+  const innerDivs = document.querySelectorAll("div.innerdivs");
+  // calls coloring function on innerDivs
+  return colorInnerDivs(innerDivs);
 }
 
 // create initial canvas
@@ -41,13 +30,13 @@ clearButton.addEventListener("click", function (event) {
   );
   if (validateSize(sideSquares)) {
     let totalNumberSquares = sideSquares * sideSquares;
-    innerDivs = document.querySelectorAll("div.innerdivs");
+    // selects all innerdivs and deletes each one
+    const innerDivs = document.querySelectorAll("div.innerdivs");
     for (let i = 0; i < innerDivs.length; i++) {
       innerDivs.item(i).remove();
     }
-    innerDivs = document.querySelectorAll("div.innerdivs");
-    createDivs(sideSquares, totalNumberSquares);
-    return;
+    // returns new canvas
+    return createDivs(sideSquares, totalNumberSquares);
   }
 });
 
@@ -136,6 +125,6 @@ function randomRGB() {
 
 //changes lightness of color and returns updated color
 function darkenColor(lightness) {
-  darkerColor = "hsl(6.2, 93.2%," + lightness + "%)";
+  let darkerColor = "hsl(6.2, 93.2%," + lightness + "%)";
   return darkerColor;
 }
