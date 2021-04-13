@@ -1,19 +1,19 @@
-const outerDiv = document.querySelector("#outerdiv");
+const canvas = document.querySelector("#canvas");
 const clearButton = document.querySelector("#clear");
 const pencilButtons = document.querySelectorAll(".pencil");
 const pencilButtonsDiv = document.querySelector("#pencilButtonsDiv");
 let pencilType;
 
-// creates an array with the necessary number of divs, sets class, and appends to outerdiv; create grid and calls coloring function
+// creates an array with the necessary number of divs, sets class, and appends to canvas; create grid and calls coloring function
 function createDivs(sideSquares, totalNumberSquares) {
   let divsArray = [];
   for (let i = 0; i < totalNumberSquares; i++) {
     divsArray[i] = document.createElement("div");
     divsArray[i].setAttribute("class", "innerdivs");
-    outerDiv.appendChild(divsArray[i]);
+    canvas.appendChild(divsArray[i]);
   }
   // divide available space on page between the requested squares and stores the created divs
-  outerDiv.style.gridTemplateColumns = "repeat(" + sideSquares + ", 1fr)";
+  canvas.style.gridTemplateColumns = "repeat(" + sideSquares + ", 1fr)";
   const innerDivs = document.querySelectorAll("div.innerdivs");
   // calls coloring function on innerDivs
   return colorInnerDivs(innerDivs);
