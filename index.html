@@ -3,6 +3,17 @@
   <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="styles/style.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://fonts.googleapis.com/css?family=Orbitron"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.9.0/css/all.css"
+      integrity="sha384-i1LQnF23gykqWXg6jxC2ZbCbUMxyw5gLZY6UiUS98LYV5unm8GWmfkIS6jqJfb4E"
+      crossorigin="anonymous"
+    />
     <title>Etch-a-Sketch</title>
   </head>
   <body>
@@ -10,18 +21,35 @@
     <div id="centerDiv">
       <div id="canvas"></div>
       <div id="settings">
-        <button id="clear">Clear canvas</button>
-        <h3>Pick a marker:</h3>
+        <h2>Brush</h2>
         <div id="pencilButtonsDiv">
-          <button id="boring">Boring</button>
-          <button id="crazy">Crazy</button>
-          <button id="pretty">Pretty</button>
+          <button id="spray">
+            <span><i class="fas fa-spray-can"></i> </span>Spray
+          </button>
+          <button id="crazy">
+            <span><i class="fas fa-dice"></i> </span>Random
+          </button>
+          <button id="pencil">
+            <span><i class="fas fa-pencil-alt"></i> </span>Pencil
+          </button>
+
+          <label for="colorPicker"><h2>Pencil Color</h2></label>
+          <input
+            type="color"
+            id="colorPicker"
+            name="colorPicker"
+            value="#d4eec3"
+          />
         </div>
       </div>
     </div>
     <div id="bottomDiv">
-      <button>New Canvas</button>
-      <button>Clear Canvas</button>
+      <button id="newCanvas">
+        <span><i class="far fa-file"></i> </span>New Canvas
+      </button>
+      <button id="clearCanvas">
+        <span><i class="fas fa-eraser"></i> </span>Clear Canvas
+      </button>
     </div>
 
     <script src="script.js"></script>

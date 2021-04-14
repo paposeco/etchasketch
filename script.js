@@ -1,11 +1,19 @@
 const canvas = document.querySelector("#canvas");
-const clearButton = document.querySelector("#clear");
+const newCanvasBtn = document.querySelector("#newCanvas");
+const clearCanvasBtn = document.querySelector("#clearCanvas");
 const pencilButtons = document.querySelectorAll(".pencil");
 const pencilButtonsDiv = document.querySelector("#pencilButtonsDiv");
+const colorPicker = document.querySelector("#colorPicker");
+const pencilIconColor = document.querySelector(".fa-pencil-alt");
 let pencilType;
+
+// inital canvas size
+let sideSquares = 16;
+let totalNumberSquares = 256;
 
 // creates an array with the necessary number of divs, sets class, and appends to canvas; create grid and calls coloring function
 function createDivs(sideSquares, totalNumberSquares) {
+  //colorPicker.setAttribute("value", "#b8965b");
   let divsArray = [];
   for (let i = 0; i < totalNumberSquares; i++) {
     divsArray[i] = document.createElement("div");
@@ -20,24 +28,32 @@ function createDivs(sideSquares, totalNumberSquares) {
 }
 
 // create initial canvas
-createDivs(16, 256);
+window.onload = createDivs(sideSquares, totalNumberSquares);
 
 // prompts user for desired number of side squares, validates input, clears previous canvas and draws new canvas with provided settings
-clearButton.addEventListener("click", function (event) {
-  let sideSquares = window.prompt(
+newCanvasBtn.addEventListener("click", function (event) {
+  sideSquares = window.prompt(
     "Select the number of squares per side (number between 5 and 99).",
     16
   );
   if (validateSize(sideSquares)) {
-    let totalNumberSquares = sideSquares * sideSquares;
+    totalNumberSquares = sideSquares * sideSquares;
     // selects all innerdivs and deletes each one
     const innerDivs = document.querySelectorAll("div.innerdivs");
     for (let i = 0; i < innerDivs.length; i++) {
       innerDivs.item(i).remove();
     }
-    // returns new canvas
     return createDivs(sideSquares, totalNumberSquares);
   }
+});
+
+// clears canvas without changing its size
+clearCanvasBtn.addEventListener("click", function (event) {
+  const innerDivs = document.querySelectorAll("div.innerdivs");
+  for (let i = 0; i < innerDivs.length; i++) {
+    innerDivs.item(i).remove();
+  }
+  return createDivs(sideSquares, totalNumberSquares);
 });
 
 // checks if the number of squares provided is valid
@@ -55,12 +71,13 @@ function validateSize(sideSquares) {
   } else return true;
 }
 
-// adds event listener to each innerdiv and colors according to selected pencil
+// adds event listener to each innerdiv and colors according to selected brush. changes color for pencil if users selects a new color
 function colorInnerDivs(innerDivs) {
   innerDivs.forEach((item) => {
     item.addEventListener("mouseover", function (event) {
-      if (pencilType === "boring") {
-        event.target.style.backgroundColor = "lightblue";
+      if (pencilType === "pencil") {
+        event.target.style.backgroundColor = colorPicker.value;
+        pencilIconColor.style.color = colorPicker.value;
         event.target.classList.add("switchedPencil");
       } else if (pencilType === "crazy") {
         event.target.style.backgroundColor = randomRGB();
@@ -75,16 +92,16 @@ function colorInnerDivs(innerDivs) {
         element.mouseover = (element.mouseover || 0) + 1;
         switch (element.mouseover) {
           case 1:
-            event.target.style.backgroundColor = darkenColor(90);
+            event.target.style.backgroundColor = darkenColor(85);
             break;
           case 2:
-            event.target.style.backgroundColor = darkenColor(80);
+            event.target.style.backgroundColor = darkenColor(75);
             break;
           case 3:
-            event.target.style.backgroundColor = darkenColor(70);
+            event.target.style.backgroundColor = darkenColor(65);
             break;
           default:
-            event.target.style.backgroundColor = darkenColor(65);
+            event.target.style.backgroundColor = darkenColor(55);
             break;
         }
       }
@@ -95,14 +112,15 @@ function colorInnerDivs(innerDivs) {
 // listens for selection of pencil
 pencilButtonsDiv.addEventListener("click", function (event) {
   switch (event.target.getAttribute("id")) {
-    case "boring":
-      pencilType = "boring";
+    case "pencil":
+      pencilType = "pencil";
+
       break;
     case "crazy":
       pencilType = "crazy";
       break;
-    case "pretty":
-      pencilType = "pretty";
+    case "spray":
+      pencilType = "spray";
       break;
   }
 });
@@ -125,6 +143,7 @@ function randomRGB() {
 
 //changes lightness of color and returns updated color
 function darkenColor(lightness) {
-  let darkerColor = "hsl(6.2, 93.2%," + lightness + "%)";
+  let darkerColor = "hsl(96, 56%," + lightness + "%)";
+  //  let darkerColor = "hsl(6.2, 93.2%," + lightness + "%)";
   return darkerColor;
 }
