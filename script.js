@@ -7,6 +7,8 @@ const colorPicker = document.querySelector("#colorPicker");
 const pencilIconColor = document.querySelector(".fa-pencil-alt");
 let pencilType;
 
+//mudar queryselector para getelementbyid
+
 // inital canvas size
 let sideSquares = 16;
 let totalNumberSquares = 256;
@@ -147,3 +149,12 @@ function darkenColor(lightness) {
   //  let darkerColor = "hsl(6.2, 93.2%," + lightness + "%)";
   return darkerColor;
 }
+
+const canvasWheel = document.getElementById("canvasWheel");
+const ctx = canvasWheel.getContext("2d");
+
+let img = new Image();
+img.src = "file.svg";
+window.onload = function () {
+  ctx.drawImage(img, 10, 10, 110, 110);
+};

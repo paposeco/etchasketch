@@ -56,7 +56,7 @@ body {
   margin: 20px auto;
   padding: 0;
   height: 95vh;
-  width: 105vh;
+  width: 102vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -74,7 +74,7 @@ body {
   background: #c8ad7f;
   box-sizing: border-box;
   margin: auto 0;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 #settings {
@@ -88,8 +88,8 @@ body {
 
 #canvas {
   display: grid;
-  max-height: 76vh;
-  max-width: 76vh;
+  max-height: 71vh;
+  max-width: 71vh;
   flex-grow: 1;
   background: #e6f5dc;
   margin-top: 1vh;
@@ -99,13 +99,15 @@ body {
 }
 
 #bottomDiv {
-  height: 10vh;
+  height: 15vh;
   flex-shrink: 0;
-  max-width: 77vh;
+  /* max-width: 77vh; */
+  width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-  gap: 20px;
+  /* gap: 20px; */
+  padding-right: 20px;
 }
 
 button {
@@ -184,4 +186,8 @@ button#spray > span > i {
 #bottomDiv button {
   height: 60px;
   width: 200px;
+}
+
+#bottomDiv img {
+  width: 110px;
 }
