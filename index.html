@@ -14,6 +14,7 @@
       integrity="sha384-i1LQnF23gykqWXg6jxC2ZbCbUMxyw5gLZY6UiUS98LYV5unm8GWmfkIS6jqJfb4E"
       crossorigin="anonymous"
     />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Etch-a-Sketch</title>
   </head>
   <body>
@@ -44,17 +45,22 @@
       </div>
     </div>
     <div id="bottomDiv">
-      <canvas id="canvasWheel"></canvas>
-      <!-- <img src="file.svg" /> -->
+      <img src="file2.svg" id="leftWheel" />
       <button id="newCanvas">
         <span><i class="far fa-file"></i> </span>New Canvas
       </button>
       <button id="clearCanvas">
         <span><i class="fas fa-eraser"></i> </span>Clear Canvas
       </button>
-      <img src="file.svg" />
+      <img src="file2.svg" id="rightWheel" />
     </div>
-
+    <div id="credits">
+      <p>
+        <a href="https://github.com/paposeco/" alt="github">
+          <span><i class="fab fa-github"></i></span> Fabi</a
+        >
+      </p>
+    </div>
     <script src="script.js"></script>
   </body>
 </html>

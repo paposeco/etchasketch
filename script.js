@@ -7,6 +7,8 @@ const colorPicker = document.querySelector("#colorPicker");
 const pencilIconColor = document.querySelector(".fa-pencil-alt");
 let pencilType;
 
+let click = false;
+
 //mudar queryselector para getelementbyid
 
 // inital canvas size
@@ -15,7 +17,6 @@ let totalNumberSquares = 256;
 
 // creates an array with the necessary number of divs, sets class, and appends to canvas; create grid and calls coloring function
 function createDivs(sideSquares, totalNumberSquares) {
-  //colorPicker.setAttribute("value", "#b8965b");
   let divsArray = [];
   for (let i = 0; i < totalNumberSquares; i++) {
     divsArray[i] = document.createElement("div");
@@ -25,8 +26,10 @@ function createDivs(sideSquares, totalNumberSquares) {
   // divide available space on page between the requested squares and stores the created divs
   canvas.style.gridTemplateColumns = "repeat(" + sideSquares + ", 1fr)";
   const innerDivs = document.querySelectorAll("div.innerdivs");
-  // calls coloring function on innerDivs
-  return colorInnerDivs(innerDivs);
+  // on click on canvas calls coloring function on innerDivs
+  canvas.addEventListener("click", function (event) {
+    colorInnerDivs(innerDivs);
+  });
 }
 
 // create initial canvas
@@ -73,42 +76,55 @@ function validateSize(sideSquares) {
   } else return true;
 }
 
-// adds event listener to each innerdiv and colors according to selected brush. changes color for pencil if users selects a new color
+// color divs according to selected brush. changes color for pencil if users selected a new color
+function brushPicker(event) {
+  if (pencilType === "pencil") {
+    event.target.style.backgroundColor = colorPicker.value;
+    pencilIconColor.style.color = colorPicker.value;
+    event.target.classList.add("switchedPencil");
+  } else if (pencilType === "crazy") {
+    event.target.style.backgroundColor = randomRGB();
+    event.target.classList.add("switchedPencil");
+  } else {
+    var element = event.target;
+    // if the user switched pencils, resets the mouseover counter
+    if (event.target.classList.contains("switchedPencil")) {
+      element.mouseover = 0;
+      event.target.classList.remove("switchedPencil");
+    }
+    element.mouseover = (element.mouseover || 0) + 1;
+    switch (element.mouseover) {
+      case 1:
+        event.target.style.backgroundColor = darkenColor(85);
+        break;
+      case 2:
+        event.target.style.backgroundColor = darkenColor(75);
+        break;
+      case 3:
+        event.target.style.backgroundColor = darkenColor(65);
+        break;
+      default:
+        event.target.style.backgroundColor = darkenColor(55);
+        break;
+    }
+  }
+}
+
+// on click on canvas adds or removes event listeners to each innerdivs
 function colorInnerDivs(innerDivs) {
-  innerDivs.forEach((item) => {
-    item.addEventListener("mouseover", function (event) {
-      if (pencilType === "pencil") {
-        event.target.style.backgroundColor = colorPicker.value;
-        pencilIconColor.style.color = colorPicker.value;
-        event.target.classList.add("switchedPencil");
-      } else if (pencilType === "crazy") {
-        event.target.style.backgroundColor = randomRGB();
-        event.target.classList.add("switchedPencil");
-      } else {
-        var element = event.target;
-        // if the user switched pencils, resets the mouseover counter
-        if (event.target.classList.contains("switchedPencil")) {
-          element.mouseover = 0;
-          event.target.classList.remove("switchedPencil");
-        }
-        element.mouseover = (element.mouseover || 0) + 1;
-        switch (element.mouseover) {
-          case 1:
-            event.target.style.backgroundColor = darkenColor(85);
-            break;
-          case 2:
-            event.target.style.backgroundColor = darkenColor(75);
-            break;
-          case 3:
-            event.target.style.backgroundColor = darkenColor(65);
-            break;
-          default:
-            event.target.style.backgroundColor = darkenColor(55);
-            break;
-        }
-      }
+  if (!click) {
+    innerDivs.forEach((item) => {
+      item.addEventListener("mouseover", brushPicker);
     });
-  });
+    click = true;
+    return click;
+  } else {
+    innerDivs.forEach((item) => {
+      item.removeEventListener("mouseover", brushPicker);
+    });
+    click = false;
+    return click;
+  }
 }
 
 // listens for selection of pencil
@@ -116,7 +132,6 @@ pencilButtonsDiv.addEventListener("click", function (event) {
   switch (event.target.getAttribute("id")) {
     case "pencil":
       pencilType = "pencil";
-
       break;
     case "crazy":
       pencilType = "crazy";
@@ -146,15 +161,5 @@ function randomRGB() {
 //changes lightness of color and returns updated color
 function darkenColor(lightness) {
   let darkerColor = "hsl(96, 56%," + lightness + "%)";
-  //  let darkerColor = "hsl(6.2, 93.2%," + lightness + "%)";
   return darkerColor;
 }
-
-const canvasWheel = document.getElementById("canvasWheel");
-const ctx = canvasWheel.getContext("2d");
-
-let img = new Image();
-img.src = "file.svg";
-window.onload = function () {
-  ctx.drawImage(img, 10, 10, 110, 110);
-};

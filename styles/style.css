@@ -12,30 +12,27 @@ pre {
 }
 
 h1 {
-  font-size: 30px;
-  line-height: 26.4px;
+  font-size: 1.875rem; /*30*/
   font-weight: 700;
-  text-align: center;
   color: #e0ebc6;
   text-shadow: 1px 1px 1px #b8c87f;
+  align-self: start;
+  padding-left: 70px;
 }
 h2 {
-  font-size: 20px;
-  line-height: 21px;
+  font-size: 1.25rem; /*20*/
   font-weight: 700;
   text-align: center;
   color: #e0ebc6;
   text-shadow: 1px 1px 1px #b8c87f;
 }
 h3 {
-  font-size: 14px;
+  font-size: 0.875rem; /*14*/
   font-weight: 700;
-  line-height: 15.4px;
 }
 p {
-  font-size: 14px;
+  font-size: 0.875rem; /*14*/
   font-weight: 400;
-  line-height: 20px;
 }
 blockquote {
   font-size: 21px;
@@ -50,13 +47,14 @@ pre {
 
 html {
   background: #fffff0;
+  font-size: 16px;
 }
 
 body {
   margin: 20px auto;
   padding: 0;
   height: 95vh;
-  width: 102vh;
+  width: 98vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -68,18 +66,20 @@ body {
 
 #centerDiv {
   height: 89vh;
-  width: 91vh;
+  width: 89vh;
   display: flex;
   flex-direction: row;
   background: #c8ad7f;
   box-sizing: border-box;
   margin: auto 0;
   justify-content: space-around;
+  gap: 10px;
 }
 
 #settings {
-  width: 10vh;
-  /* flex-shrink: 0; */
+  min-width: 5vh;
+  width: 14vh;
+  flex-shrink: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -88,10 +88,10 @@ body {
 
 #canvas {
   display: grid;
-  max-height: 71vh;
-  max-width: 71vh;
+  max-height: 66vh;
+  max-width: 66vh;
   flex-grow: 1;
-  background: #e6f5dc;
+  background: #f2faed;
   margin-top: 1vh;
   border: 2px solid #b8965b;
   border-radius: 10px;
@@ -101,19 +101,16 @@ body {
 #bottomDiv {
   height: 15vh;
   flex-shrink: 0;
-  /* max-width: 77vh; */
   width: 100%;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  /* gap: 20px; */
   padding-right: 20px;
 }
 
 button {
-  font-size: 17px;
+  font-size: 1.1rem; /*17*/
   font-weight: 600;
-  line-height: 22px;
   border-radius: 10px;
   background: #f5f5dc;
   box-shadow: inset 1px 1px 2px 2px hsl(60, 56%, 98%), 2px 2px 2px 1px #b8965b;
@@ -126,13 +123,12 @@ button:hover {
   cursor: pointer;
   border: 1px solid #b8965b;
   box-shadow: inset 2px 2px 3px 2px hsl(60, 56%, 98%), 3px 3px 3px 1px #b8965b;
-  font-size: 19px;
+  font-size: 19px; /*19*/
 }
 
 #pencilButtonsDiv button {
   display: block;
   width: 100%;
-  min-width: 140px;
   height: 80px;
   margin-bottom: 5px;
 }
@@ -189,5 +185,12 @@ button#spray > span > i {
 }
 
 #bottomDiv img {
-  width: 110px;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  text-decoration: none;
+  color: #e0ebc6;
+  text-shadow: 1px 1px 1px #b8c87f;
 }
