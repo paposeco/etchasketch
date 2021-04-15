@@ -194,3 +194,17 @@ a {
   color: #e0ebc6;
   text-shadow: 1px 1px 1px #b8c87f;
 }
+
+#clickHere {
+  width: 65vh;
+  height: 65vh;
+  padding-top: 23vh;
+}
+
+#clickHere p {
+  text-align: center;
+  font-size: 1.75rem;
+  font-weight: bolder;
+  color: #c1d78d;
+  text-shadow: 1px 1px 1px #879662;
+}
