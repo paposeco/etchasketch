@@ -65,7 +65,7 @@ body {
 }
 
 #centerDiv {
-  height: 89vh;
+  height: 68vh;
   width: 89vh;
   display: flex;
   flex-direction: row;
@@ -101,7 +101,7 @@ body {
 #bottomDiv {
   height: 15vh;
   flex-shrink: 0;
-  width: 100%;
+  width: 95%;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -110,7 +110,7 @@ body {
 
 button {
   font-size: 1.1rem; /*17*/
-  font-weight: 600;
+  font-weight: 500;
   border-radius: 10px;
   background: #f5f5dc;
   box-shadow: inset 1px 1px 2px 2px hsl(60, 56%, 98%), 2px 2px 2px 1px #b8965b;
@@ -197,7 +197,7 @@ a {
 
 #clickHere {
   width: 65vh;
-  height: 65vh;
+  height: 30vh;
   padding-top: 23vh;
 }
 
