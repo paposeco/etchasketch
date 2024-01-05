@@ -2,6 +2,8 @@
 
 On [my implementation](https://paposeco.github.io/etchasketch/) the user is presented with a clear canvas ready to be painted, which gets activated with a click. The user can always click to stop/restart painting.
 
+![Etch-a-Sketch](https://github.com/paposeco/etchasketch/assets/13892562/8c688c08-2236-4705-8073-38352c9a44ca)
+
 ## Brushes
 
 The default brush is a "spray": color gets progressively darker with each mouse over.
